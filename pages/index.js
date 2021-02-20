@@ -26,10 +26,10 @@ export default function Home() {
         <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
           <a
             href="https://nextjs.org/docs"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
+            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-red-400 focus:text-green-400"
           >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
+            <h3 className="text-3xl font-bold">Documentation &rarr;</h3>
+            <p className="mt- text-xl">
               Find in-depth information about Next.js features and API.
             </p>
           </a>
