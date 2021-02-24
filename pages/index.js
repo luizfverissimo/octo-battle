@@ -13,7 +13,7 @@ export default function Home() {
 
       <main className='w-full max-w-screen-2xl min-h-screen flex flex-col items-center'>
         <div className='mt-10 md:mt-20'>
-          <Tilt glareEnable>
+          <Tilt>
             <Image
               src='/octobattle-logo.svg'
               width={300}
