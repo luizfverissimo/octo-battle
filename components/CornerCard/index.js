@@ -9,7 +9,7 @@ function CornerCard({ isRed }) {
     },
     hidden: {
       opacity: 0,
-      x: -30
+      x: -200
     }
   };
 
@@ -20,7 +20,7 @@ function CornerCard({ isRed }) {
     },
     hidden: {
       opacity: 0,
-      x: 30
+      x: 200
     }
   };
 
@@ -29,7 +29,7 @@ function CornerCard({ isRed }) {
       variants={isRed ? variantsLeftFadeIn : variantsRightFadeIn}
       initial='hidden'
       animate='visible'
-      transition={{ duration: 1 }}
+      transition={{ease: 'easeIn', duration: .5 }}
       className={`${
         isRed ? 'bg-red-400' : 'bg-blue-400'
       } w-auto h-auto flex flex-col items-center justify-center p-10 rounded-3xl shadow-md transition-all transform hover:scale-105 hover:shadow-lg`}
