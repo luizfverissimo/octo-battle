@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-function CornerCard({ isRed }) {
+function CornerCard({ isRed, cornerValue, setCornerValue }) {
   const variantsLeftFadeIn = {
     visible: {
       opacity: 1,
@@ -29,7 +29,7 @@ function CornerCard({ isRed }) {
       variants={isRed ? variantsLeftFadeIn : variantsRightFadeIn}
       initial='hidden'
       animate='visible'
-      transition={{ease: 'easeIn', duration: .5 }}
+      transition={{ ease: 'easeIn', duration: 0.5 }}
       className={`${
         isRed ? 'bg-red-400' : 'bg-blue-400'
       } w-auto h-auto flex flex-col items-center justify-center p-10 rounded-3xl shadow-md transition-all transform hover:scale-105 hover:shadow-lg`}
@@ -53,6 +53,8 @@ function CornerCard({ isRed }) {
       </p>
       <input
         type='text'
+        value={cornerValue}
+        onChange={(e) => setCornerValue(e.target.value.toLowerCase())}
         className={` ${
           isRed ? 'border-red-900' : 'border-blue-900'
         } outline-none border-b-2  bg-transparent font-bebas text-black text-center text-2xl p-1 mt-5`}

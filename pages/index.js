@@ -1,55 +1,37 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
-import CornerCard from '../components/CornerCard';
 import Tilt from 'react-parallax-tilt';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
+
+import CornerCard from '../components/CornerCard';
+import {
+  variantsTopFadeIn,
+  variantsZoomIn,
+  variantsMoveFromLeft,
+  variantsMoveFromRight
+} from '../utils/animationVariants';
 
 export default function Home() {
-  const [isNextPage, setIsNextPage] = useState(false);
+  const [redCorner, setRedCorner] = useState('');
+  const [blueCorner, setBlueCorner] = useState('');
 
-  const variantsTopFadeIn = {
-    visible: {
-      opacity: 1,
-      y: 0
-    },
-    hidden: {
-      opacity: 0,
-      y: -50
-    }
-  };
+  const router = useRouter();
 
-  const variantsZoomIn = {
-    visible: {
-      opacity: 1,
-      scale: 1
-    },
-    hidden: {
-      opacity: 0,
-      scale: 0
+  const handleWinner = () => {
+    if(redCorner.length === 0 || blueCorner.length === 0) {
+      alert('All fighters are need for this round!')
+      return
     }
-  };
-
-  const variantsMoveFromLeft = {
-    visible: {
-      x: -5000,
-      display: 'block'
-    },
-    hidden: {
-      x: 0,
-      display: 'none'
-    }
-  };
-
-  const variantsMoveFromRight = {
-    visible: {
-      x: 5000,
-      display: 'block'
-    },
-    hidden: {
-      x: 0,
-      display: 'none'
-    }
+    router.push({
+      pathname: '/winner',
+      query: {
+        redCorner,
+        blueCorner
+      }
+    })
+    return
   };
 
   return (
@@ -105,7 +87,11 @@ export default function Home() {
         </motion.div>
 
         <div className='w-full flex justify-center items-center mt-10 flex-col md:flex-row '>
-          <CornerCard isRed />
+          <CornerCard
+            isRed
+            cornerValue={redCorner}
+            setCornerValue={setRedCorner}
+          />
           <motion.div
             variants={variantsZoomIn}
             initial='hidden'
@@ -120,13 +106,13 @@ export default function Home() {
           >
             <h3 className='font-bebas text-7xl text-red-600'>VS.</h3>
             <button
-              onClick={() => setIsNextPage(true)}
+              onClick={() => handleWinner()}
               className='bg-black font-bebas text-4xl text-white py-4 px-10 rounded-3xl outline-none mt-5 transition-all flex items-center justify-center hover:bg-red-600 transform hover:-translate-y-2'
             >
               FIGHT!
             </button>
           </motion.div>
-          <CornerCard />
+          <CornerCard cornerValue={blueCorner} setCornerValue={setBlueCorner} />
         </div>
       </main>
     </div>
