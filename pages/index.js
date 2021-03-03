@@ -108,7 +108,7 @@ export default function Home() {
             <button
               onClick={() => handleWinner()}
               className='bg-black font-bebas text-4xl text-white py-4 px-10 rounded-3xl outline-none mt-5 transition-all flex items-center justify-center hover:bg-red-600 transform hover:-translate-y-2'
-            >
+            > 
               FIGHT!
             </button>
           </motion.div>

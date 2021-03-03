@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Confetti from 'react-confetti';
 
 import api from '../utils/api';
+import CornerCardResults from '../components/CornerCardResults';
 
 function Winner() {
   const [redCornerStats, setRedCornerStats] = useState({});
@@ -110,12 +111,12 @@ function Winner() {
   };
 
   useEffect(() => {
-    if (!blueCorner || !redCorner) {
-      router.push('/');
-      return;
-    }
+    // if (!blueCorner || !redCorner) {
+    //   router.push('/');
+    //   return;
+    // }
 
-    fetchData();
+    // fetchData();
   }, []);
 
   useEffect(() => {
@@ -140,17 +141,8 @@ function Winner() {
         />
       )}
 
-      <button onClick={compareStats}>Compare</button>
-      <button onClick={confettiWinner}>winner</button>
+      <CornerCardResults isRed/>
 
-      <img src={redCornerStats.avatar_url} />
-      <h1>
-        {redCornerStats.login} - {redCornerStats.followers} stars: {redStars}
-      </h1>
-      <img src={blueCornerStats.avatar_url} />
-      <h1>
-        {blueCornerStats.login} - {blueCornerStats.followers} stars: {blueStars}
-      </h1>
     </div>
   );
 }

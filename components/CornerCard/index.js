@@ -34,7 +34,7 @@ function CornerCard({ isRed, cornerValue, setCornerValue }) {
         isRed ? 'bg-red-400' : 'bg-blue-400'
       } w-auto h-auto flex flex-col items-center justify-center p-10 rounded-3xl shadow-md transition-all transform hover:scale-105 hover:shadow-lg`}
     >
-      <h2 className='font-bebas text-5xl text-black'>RED CORNER</h2>
+      <h2 className='font-bebas text-5xl text-black'>{isRed ? "RED CORNER" : "BLUE CORNER"}</h2>
       <div className='mt-10 transform transition-all hover:-translate-y-2'>
         <Image
           src={isRed ? '/git-red.svg' : '/git-blue.svg'}
