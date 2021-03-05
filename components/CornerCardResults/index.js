@@ -2,7 +2,17 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-function CornerCardResults({ isRed, avatarUrl }) {
+function CornerCardResults({
+  isRed,
+  avatarUrl,
+  profileUrl,
+  name,
+  publicRepos,
+  gists,
+  followers,
+  following,
+  stars
+}) {
   const variantsLeftFadeIn = {
     visible: {
       opacity: 1,
@@ -37,14 +47,16 @@ function CornerCardResults({ isRed, avatarUrl }) {
       <h2 className='font-bebas text-5xl text-black'>
         {isRed ? 'RED CORNER' : 'BLUE CORNER'}
       </h2>
-      <div className='mt-10 transform transition-all hover:-translate-y-2'>
-        <img
-          className='rounded-full w-28 border-2 border-white'
-          src='https://avatars.githubusercontent.com/u/62751844?v=4'
-        />
+      <div className='mt-4 transform transition-all hover:-translate-y-2'>
+        <a href={profileUrl} rel='noopener' target='_blank'>
+          <img
+            className='rounded-full w-28 border-2 border-white'
+            src={avatarUrl}
+          />
+        </a>
       </div>
       <p className={`font-bebas text-2xl text-center mt-2 text-black`}>
-        LUIZFVERISSIMO
+        {name}
       </p>
 
       <div className='w-full max-w-sm  flex flex-wrap justify-center items-center'>
@@ -56,7 +68,9 @@ function CornerCardResults({ isRed, avatarUrl }) {
           >
             PUBLIC REPOS
           </h3>
-          <p className="font-bebas text-2xl text-center bg-white rounded-3xl py-4 w-20"> 10 </p>
+          <p className='font-bebas text-2xl text-center bg-white rounded-3xl py-2 w-20'>
+            {publicRepos}
+          </p>
         </div>
         <div className='mx-6 my-3 w-20'>
           <h3
@@ -64,9 +78,11 @@ function CornerCardResults({ isRed, avatarUrl }) {
               isRed ? 'text-red-900' : 'text-blue-900'
             } font-bebas text-2xl  text-center `}
           >
-            GITS
+            GISTS
           </h3>
-          <p className="font-bebas text-2xl text-center bg-white rounded-3xl py-4 w-20"> 10 </p>
+          <p className='font-bebas text-2xl text-center bg-white rounded-3xl py-2 w-20'>
+            {gists}
+          </p>
         </div>
         <div className='mx-6 my-3'>
           <h3
@@ -76,7 +92,9 @@ function CornerCardResults({ isRed, avatarUrl }) {
           >
             FOLLOWERS
           </h3>
-          <p className="font-bebas text-2xl text-center bg-white rounded-3xl py-4 w-20"> 10 </p>
+          <p className='font-bebas text-2xl text-center bg-white rounded-3xl py-2 w-20'>
+            {followers}
+          </p>
         </div>
         <div className='mx-6 my-3'>
           <h3
@@ -86,7 +104,9 @@ function CornerCardResults({ isRed, avatarUrl }) {
           >
             FOLLOWING
           </h3>
-          <p className="font-bebas text-2xl text-center bg-white rounded-3xl py-4 w-20"> 10 </p>
+          <p className='font-bebas text-2xl text-center bg-white rounded-3xl py-2 w-20'>
+            {following}
+          </p>
         </div>
         <div className='mx-6 my-3'>
           <h3
@@ -96,11 +116,11 @@ function CornerCardResults({ isRed, avatarUrl }) {
           >
             STARS
           </h3>
-          <p className="font-bebas text-2xl text-center bg-white rounded-3xl py-4 w-20"> 10 </p>
+          <p className='font-bebas text-2xl text-center bg-white rounded-3xl py-2 w-20'>
+            {stars}
+          </p>
         </div>
-        
       </div>
-      
     </motion.div>
   );
 }
