@@ -194,7 +194,7 @@ function Winner() {
               winnerIsRed ? 'text-red-600' : 'text-blue-600'
             } font-bebas text-5xl mb-6`}
           >
-            LUIZFVERISSIMO
+            {winnerIsRed ? redCornerStats.login : blueCornerStats.login}
             <br />
             IS THE WINNER!
           </h1>
