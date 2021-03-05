@@ -192,7 +192,7 @@ function Winner() {
           <h1
             className={`${
               winnerIsRed ? 'text-red-600' : 'text-blue-600'
-            } font-bebas text-5xl mb-6`}
+            } font-bebas text-5xl mb-6 text-center`}
           >
             {winnerIsRed ? redCornerStats.login : blueCornerStats.login}
             <br />
