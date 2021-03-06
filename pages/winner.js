@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Confetti from 'react-confetti';
 import { motion } from 'framer-motion';
+import Head from 'next/head';
 
 import api from '../utils/api';
 import CornerCardResults from '../components/CornerCardResults';
 import { variantsTopFadeIn, variantsZoomIn } from '../utils/animationVariants';
-import { route } from 'next/dist/next-server/server/router';
 
 function Winner() {
   const [redCornerStats, setRedCornerStats] = useState({});
@@ -126,99 +126,105 @@ function Winner() {
   }, [isLoaded]);
 
   return (
-    <div className='flex flex-col items-center min-h-screen py-2 bg-white'>
-      {winnerIsRed && (
-        <Confetti
-          recycle={false}
-          numberOfPieces={500}
-          colors={['#fc0303', '#7a0606', '#ed6d6d', '#a60a0a']}
-        />
-      )}
+    <>
+      <Head>
+        <title>The Winner is... | Octo Battle</title>
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      <div className='flex flex-col items-center min-h-screen py-2 bg-white'>
+        {winnerIsRed && (
+          <Confetti
+            recycle={false}
+            numberOfPieces={500}
+            colors={['#fc0303', '#7a0606', '#ed6d6d', '#a60a0a']}
+          />
+        )}
 
-      {winnerIsBlue && (
-        <Confetti
-          recycle={false}
-          numberOfPieces={500}
-          colors={['#081ea8', '#7183f5', '#030e59', '#0020fc']}
-        />
-      )}
-
-      <motion.div
-        className='mt-10 md:mt-20'
-        variants={variantsTopFadeIn}
-        initial='hidden'
-        animate='visible'
-        transition={{ ease: 'easeIn', duration: 0.5 }}
-        className='w-full flex justify-center my-6 flex-col items-center'
-      >
-        <img src='/octobattle-logo.svg' className='w-52 h-auto' />
-        <p className='font-bebas text-center '>
-          Created by{' '}
-          <a
-            className='underline transition-all hover:text-red-600'
-            target='_blank'
-            href='http://lfverissimo.com'
-          >
-            LF Verissimo
-          </a>
-        </p>
-      </motion.div>
-
-      <div className='w-full flex justify-center items-center flex-col md:flex-row'>
-        <CornerCardResults
-          isRed
-          avatarUrl={redCornerStats.avatar_url}
-          profileUrl={redCornerStats.html_url}
-          name={redCornerStats.login}
-          publicRepos={redCornerStats.public_repos}
-          gists={redCornerStats.public_gists}
-          followers={redCornerStats.followers}
-          following={redCornerStats.following}
-          stars={redStars}
-        />
+        {winnerIsBlue && (
+          <Confetti
+            recycle={false}
+            numberOfPieces={500}
+            colors={['#081ea8', '#7183f5', '#030e59', '#0020fc']}
+          />
+        )}
 
         <motion.div
-          variants={variantsZoomIn}
+          className='mt-10 md:mt-20'
+          variants={variantsTopFadeIn}
           initial='hidden'
           animate='visible'
-          transition={{
-            type: 'spring',
-            stiffness: 100,
-            duration: 0.5,
-            delay: 0.5
-          }}
-          className='flex flex-col items-center justify-center mx-20'
+          transition={{ ease: 'easeIn', duration: 0.5, delay: 0.5 }}
+          className='w-full flex justify-center my-6 flex-col items-center'
         >
-          <h1
-            className={`${
-              winnerIsRed ? 'text-red-600' : 'text-blue-600'
-            } font-bebas text-5xl mb-6 text-center`}
-          >
-            {winnerIsRed ? redCornerStats.login : blueCornerStats.login}
-            <br />
-            IS THE WINNER!
-          </h1>
-          <img src='/trophy.svg' />
-          <button
-            onClick={() => router.push('/')}
-            className='bg-black font-bebas text-4xl text-white py-4 px-10 rounded-3xl outline-none mt-8 transition-all flex items-center justify-center hover:bg-red-600 transform hover:-translate-y-2'
-          >
-            NEW ROUND
-          </button>
+          <img src='/octobattle-logo.svg' className='w-52 h-auto' />
+          <p className='font-bebas text-center '>
+            Created by{' '}
+            <a
+              className='underline transition-all hover:text-red-600'
+              target='_blank'
+              href='http://lfverissimo.com'
+            >
+              LF Verissimo
+            </a>
+          </p>
         </motion.div>
 
-        <CornerCardResults
-          avatarUrl={blueCornerStats.avatar_url}
-          profileUrl={blueCornerStats.html_url}
-          name={blueCornerStats.login}
-          publicRepos={blueCornerStats.public_repos}
-          gists={blueCornerStats.public_gists}
-          followers={blueCornerStats.followers}
-          following={blueCornerStats.following}
-          stars={blueStars}
-        />
+        <div className='w-full flex justify-center items-center flex-col lg:flex-row'>
+          <CornerCardResults
+            isRed
+            avatarUrl={redCornerStats.avatar_url}
+            profileUrl={redCornerStats.html_url}
+            name={redCornerStats.login}
+            publicRepos={redCornerStats.public_repos}
+            gists={redCornerStats.public_gists}
+            followers={redCornerStats.followers}
+            following={redCornerStats.following}
+            stars={redStars}
+          />
+
+          <motion.div
+            variants={variantsZoomIn}
+            initial='hidden'
+            animate='visible'
+            transition={{
+              type: 'spring',
+              stiffness: 100,
+              duration: 0.5,
+              delay: 1
+            }}
+            className='flex flex-col items-center justify-center mx-20 my-10'
+          >
+            <h1
+              className={`${
+                winnerIsRed ? 'text-red-600' : 'text-blue-600'
+              } font-bebas text-5xl mb-6 text-center`}
+            >
+              {winnerIsRed ? redCornerStats.login : blueCornerStats.login}
+              <br />
+              IS THE WINNER!
+            </h1>
+            <img src='/trophy.svg' />
+            <button
+              onClick={() => router.push('/')}
+              className='bg-black font-bebas text-4xl text-white py-4 px-10 rounded-3xl outline-none mt-8 transition-all flex items-center justify-center hover:bg-red-600 transform hover:-translate-y-2'
+            >
+              NEW ROUND
+            </button>
+          </motion.div>
+
+          <CornerCardResults
+            avatarUrl={blueCornerStats.avatar_url}
+            profileUrl={blueCornerStats.html_url}
+            name={blueCornerStats.login}
+            publicRepos={blueCornerStats.public_repos}
+            gists={blueCornerStats.public_gists}
+            followers={blueCornerStats.followers}
+            following={blueCornerStats.following}
+            stars={blueStars}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

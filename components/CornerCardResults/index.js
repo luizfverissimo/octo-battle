@@ -39,12 +39,12 @@ function CornerCardResults({
       variants={isRed ? variantsLeftFadeIn : variantsRightFadeIn}
       initial='hidden'
       animate='visible'
-      transition={{ ease: 'easeIn', duration: 0.5 }}
+      transition={{ ease: 'easeIn', duration: 0.5, delay: 0.5 }}
       className={`${
         isRed ? 'bg-red-400' : 'bg-blue-400'
-      } w-auto h-auto flex flex-col items-center justify-center p-10 rounded-3xl shadow-md transition-all transform hover:scale-105 hover:shadow-lg`}
+      } w-auto h-auto flex flex-col items-center justify-center p-10 rounded-3xl shadow-md transition-all mx-6 transform hover:scale-105 hover:shadow-lg`}
     >
-      <h2 className='font-bebas text-5xl text-black'>
+      <h2 className='font-bebas text-5xl text-black text-center'>
         {isRed ? 'RED CORNER' : 'BLUE CORNER'}
       </h2>
       <div className='mt-4 transform transition-all hover:-translate-y-2'>
